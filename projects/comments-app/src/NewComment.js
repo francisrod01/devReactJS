@@ -10,16 +10,16 @@ class NewComment extends Component {
     handleEnter(event) {
         if (event.keyCode === 13) {
             this.props.postNewComment({
-                comment: 'Add a comment'
+                comment: this.refs.comment.value
             })
-
+            this.refs.comment.value = ''
             event.preventDefault()
         }
     }
     render() {
         return (
             <div className="row">
-                <textarea placeholder="Comment here!" className="form-control" onKeyDown={this.handleEnter} />
+                <textarea ref="comment" placeholder="Comment here!" className="form-control" onKeyDown={this.handleEnter} />
             </div>
         )
     }
