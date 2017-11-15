@@ -1,11 +1,17 @@
 import React, {Component} from 'react'
 
 class Comments extends Component {
+    renderComment(_key, comment) {
+        return (
+            <p key={_key}>{comment.comment}</p>
+        )
+    }
     render() {
         return (
             <div>
-                Rendering comments here.
-                <code>{JSON.stringify(this.props.comments)}</code>
+                {
+                    Object.keys(this.props.comments).map(_key => this.renderComment(_key, this.props.comments[_key]))
+                }
             </div>
         )
     }
