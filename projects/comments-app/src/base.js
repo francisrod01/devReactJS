@@ -1,5 +1,5 @@
 import Rebase from 're-base'
-
+import firebase from 'firebase'
 
 const config = {
     apiKey: "AIzaSyA5P_bMaU-Jh1-DSwDtdp4mTnmSGSdDZiI",
@@ -10,6 +10,13 @@ const config = {
     messagingSenderId: "514612843673"
 }
 
-const base = Rebase.createClass(config)
+const firebaseApp = firebase.initializeApp(config)
+const database = firebase.database(firebaseApp)
+const base = Rebase.createClass(database)
 
+export const providers = {
+    'facebook': new firebase.auth.FacebookAuthProvider()
+}
+
+export const auth = firebase.auth()
 export default base
