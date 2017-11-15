@@ -1,9 +1,11 @@
 import React, {Component} from 'react'
 
+import Comment from './Comment'
+
 class Comments extends Component {
     renderComment(_key, comment) {
         return (
-            <p key={_key}>{comment.comment}</p>
+            <Comment key={_key} comment={comment} />
         )
     }
     render() {
