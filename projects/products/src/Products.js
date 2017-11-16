@@ -12,9 +12,11 @@ class Products extends Component {
         this.state = {
             categories: []
         }
+        
+        this.handleNewCategory = this.handleNewCategory.bind(this)
+        this.loadCategories = this.loadCategories.bind(this)
     }
-    componentDidMount() {
-        // Find categories.
+    loadCategories() {
         axios
             .get('http://localhost:3001/categories')
             .then(res => {
@@ -23,12 +25,29 @@ class Products extends Component {
                 })
             })
     }
+    componentDidMount() {
+        this.loadCategories()
+    }
     renderCategory(_cat, _key) {
         return (
             <li key={_key}>
                 <Link to={`/products/category/${_cat.id}`}>{_cat.category}</Link>
             </li>
         )
+    }
+    handleNewCategory(key) {
+        if (key.keyCode === 13) {
+            // Store a category.
+            axios
+            .post('http://localhost:3001/categories',
+            {
+                category: this.refs.category.value
+            })
+            .then(res => {
+                this.loadCategories()
+                this.refs.category.value = ''
+            })
+        }
     }
     render() {
         const {match} = this.props
@@ -41,6 +60,13 @@ class Products extends Component {
                     <ul>
                         { categories.map(this.renderCategory) }
                     </ul>
+                    <div className='well'>
+                        <input
+                            onKeyUp={this.handleNewCategory}
+                            type='text'
+                            ref='category'
+                            placeholder='New category' />
+                    </div>
                 </div>
                 <div className='col-md-10'>
                     <h1>Products</h1>
