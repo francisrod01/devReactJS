@@ -2,6 +2,9 @@ import React from 'react'
 
 // Functional stateless component.
 const Comment = props =>
-    <p className="well">{props.comment.comment}</p>
+    <p className="well">
+        <strong>{props.comment.user.name}</strong>:<br />
+        {props.comment.comment}
+    </p>
 
 export default Comment

@@ -30,6 +30,10 @@ class App extends Component {
     })
   }
   postNewComment(comment) {
+    comment.user = {
+      uid: this.state.user.uid,
+      name: this.state.user.displayName
+    }
     const comments = {...this.state.comments}
     const timestamp = Date.now()
     comments[`comm-${timestamp}`] = comment
