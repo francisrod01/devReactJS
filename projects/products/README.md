@@ -13,21 +13,14 @@ Author: [Francis Rodrigues](https://github.com/francisrod01)
 ~$ yarn global add json-server
 ```
 
-2. Create a `database.json` file
+2. Copy a `database.json.example` file to `database.json` file.
 
-```js
+    This is an example of the content:
+
+```json
 {
-  "products": [],
-  "categories": [
-    {
-      "id": 1,
-      "category": "Cleaning",
-    },
-    {
-      "id": 2,
-      "category": "Foods"
-    }
-  ]
+    "products": [],
+    "categories": []
 }
 ```
 
