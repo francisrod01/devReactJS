@@ -1,5 +1,21 @@
 {
-    "products": [],
+    "products": [
+        {
+            "id": 1,
+            "product": "Soap",
+            "category": 1
+        },
+        {
+            "id": 2,
+            "product": "Washing powder",
+            "category": 1
+        },
+        {
+            "id": 3,
+            "product": "Biscuit",
+            "category": 2
+        }
+    ],
     "categories": [
         {
             "id": 1,
@@ -8,6 +24,10 @@
         {
             "id": 2,
             "category": "Food"
+        },
+        {
+            "id": 3,
+            "category": "Utilities"
         }
     ]
 }
