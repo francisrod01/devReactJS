@@ -16,6 +16,9 @@
 .env.test.local
 .env.production.local
 
+# database files
+database.json
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
