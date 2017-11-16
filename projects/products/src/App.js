@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 
 import Home from './Home'
+import Products from './Products'
 import About from './About'
 
 class App extends Component {
@@ -38,6 +39,7 @@ class App extends Component {
           <div className='container' style={{'paddingTop': 20}}>
             <Route exact path='/' component={Home} />
             <Route exact path='/about' component={About} />
+            <Route path='/products' component={Products} />
           </div>
         </div>
       </Router>
