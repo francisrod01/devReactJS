@@ -60,10 +60,11 @@ class Products extends Component {
                     <ul>
                         { categories.map(this.renderCategory) }
                     </ul>
-                    <div className='well'>
+                    <div className='well well-sm'>
                         <input
                             onKeyUp={this.handleNewCategory}
                             type='text'
+                            className='form-control'
                             ref='category'
                             placeholder='New category' />
                     </div>
