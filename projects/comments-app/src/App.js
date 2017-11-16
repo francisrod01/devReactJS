@@ -11,8 +11,18 @@ class App extends Component {
     this.postNewComment = this.postNewComment.bind(this)
 
     this.state = {
-      comments: {}
+      comments: {},
+      isLoggedIn: false,
+      user: {}
     }
+
+    this.props.auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({isLoggedIn: true, user})
+      } else {
+        this.setState({isLoggedIn: false, user: {}})
+      }
+    })
 
     this.refComments = this.props.base.syncState('comments', {
       context: this,
@@ -27,10 +37,27 @@ class App extends Component {
       comments: comments
     })
   }
+  auth(provider) {
+    this.props.auth.signInWithPopup(this.props.providers[provider])
+  }
   render() {
     return (
       <div className="container">
-        <NewComment postNewComment={this.postNewComment} />
+        {
+          !this.state.isLoggedIn && 
+          <div className='alert alert-info'>
+            <button onClick={() => this.auth('facebook')}>Signin with Facebook</button>
+          </div>
+        }
+        {
+          this.state.isLoggedIn && 
+          <div>
+            { this.state.user.displayName }
+            <img alt={this.state.user.displayName} src={this.state.user.photoURL} /><br />
+            <button onClick={() => this.props.auth.signOut()}>Logout</button>
+            <NewComment postNewComment={this.postNewComment} />
+          </div>
+        }
         <Comments comments={this.state.comments} />
       </div>
     )
