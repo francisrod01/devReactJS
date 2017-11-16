@@ -10,30 +10,22 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <nav className='navbar navbar-expand-lg navbar-dark bg-dark'>
+          <nav className='navbar navbar-inverse'>
             <div className='container'>
               <Link to='/' className='navbar-brand'>
                 Products Management
               </Link>
-              <button className="navbar-toggler" type="button" 
-                data-toggle="collapse" data-target="#navbarNav" 
-                aria-controls="navbarNav" aria-expanded="false" 
-                aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-              </button>
-              <div className='collapse navbar-collapse' id='navbarNav'>
-                <ul className='navbar-nav'>
-                  <li className='nav-item'>
-                    <Link className='nav-link' to='/'>Home</Link>
-                  </li>
-                  <li className='nav-item'>
-                    <Link className='nav-link' to='/products'>Products</Link>
-                  </li>
-                  <li className='nav-item'>
-                    <Link className='nav-link' to='/about'>About</Link>
-                  </li>
-                </ul>
-              </div>
+              <ul className='nav navbar-nav'>
+                <li>
+                  <Link to='/'>Home</Link>
+                </li>
+                <li className='nav-item'>
+                  <Link to='/products'>Products</Link>
+                </li>
+                <li className='nav-item'>
+                  <Link to='/about'>About</Link>
+                </li>
+              </ul>
             </div>
           </nav>
           <div className='container' style={{'paddingTop': 20}}>
