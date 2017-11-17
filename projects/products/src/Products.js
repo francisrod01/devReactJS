@@ -1,44 +1,24 @@
 import React, {Component} from 'react'
 import {Route, Link} from 'react-router-dom'
-import axios from 'axios'
 
 import ProductsHome from './ProductsHome'
 import Category from './Category'
 
-import Api from './Api'
-
 class Products extends Component {
     constructor(props) {
         super(props)
-
-        this.state = {
-            categories: []
-        }
         
         this.renderCategory = this.renderCategory.bind(this)
         this.handleNewCategory = this.handleNewCategory.bind(this)
-        this.loadCategories = this.loadCategories.bind(this)
-    }
-    loadCategories() {
-        Api.loadCategories()
-            .then(res => {
-                this.setState({
-                    categories: res.data
-                })
-            })
     }
     componentDidMount() {
-        this.loadCategories()
-    }
-    removeCategory(category) {
-        Api.deleteCategory(category.id)
-            .then((res) => this.loadCategories())
+        this.props.loadCategories()
     }
     renderCategory(cat) {
         return (
             <li key={cat.id}>
                 <Link to={`/products/category/${cat.id}`}>{cat.category}</Link>
-                <button className='btn btn-sm' onClick={() => this.removeCategory(cat)}>
+                <button className='btn btn-sm' onClick={() => this.props.removeCategory(cat)}>
                     <span className='glyphicon glyphicon-remove'></span>
                 </button>
             </li>
@@ -46,22 +26,14 @@ class Products extends Component {
     }
     handleNewCategory(key) {
         if (key.keyCode === 13) {
-            // Store a category.
-            axios
-            .post('http://localhost:3001/categories',
-            {
+            this.props.createCategory({
                 category: this.refs.category.value
             })
-            .then(res => {
-                this.loadCategories()
-                this.refs.category.value = ''
-            })
+            this.refs.category.value = ''
         }
     }
     render() {
-        const {match} = this.props
-        const {categories} = this.state
-
+        const {match, categories} = this.props
         return (
             <div className='row'>
                 <div className='col-md-2'>

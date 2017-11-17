@@ -6,6 +6,33 @@ import Products from './Products'
 import About from './About'
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+
+    this.loadCategories = this.loadCategories.bind(this)
+    this.createCategory = this.createCategory.bind(this)
+    this.removeCategory = this.removeCategory.bind(this)
+
+    this.state = {
+      categories: []
+    }
+  }
+  loadCategories() {
+    this.props.api.loadCategories()
+      .then(res => {
+          this.setState({
+            categories: res.data
+          })
+      })
+  }
+  createCategory(category) {
+    this.props.api.createCategory(category)
+      .then((res) => this.loadCategories())
+  }
+  removeCategory(category) {
+    this.props.api.deleteCategory(category.id)
+      .then((res) => this.loadCategories())
+  }
   render() {
     return (
       <Router>
@@ -31,11 +58,19 @@ class App extends Component {
           <div className='container' style={{'paddingTop': 20}}>
             <Route exact path='/' component={Home} />
             <Route exact path='/about' component={About} />
-            <Route path='/products' component={Products} />
+            <Route path='/products' render={(props) => {
+              return (<Products 
+                {...props}
+                loadCategories={this.loadCategories}
+                createCategory={this.createCategory}
+                categories={this.state.categories}
+                removeCategory={this.removeCategory}
+                />)
+            }} />
           </div>
         </div>
       </Router>
-    );
+    )
   }
 }
 
