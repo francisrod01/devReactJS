@@ -5,6 +5,8 @@ import axios from 'axios'
 import ProductsHome from './ProductsHome'
 import Category from './Category'
 
+import Api from './Api'
+
 class Products extends Component {
     constructor(props) {
         super(props)
@@ -18,8 +20,7 @@ class Products extends Component {
         this.loadCategories = this.loadCategories.bind(this)
     }
     loadCategories() {
-        axios
-            .get('http://localhost:3001/categories')
+        Api.loadCategories()
             .then(res => {
                 this.setState({
                     categories: res.data
@@ -30,8 +31,7 @@ class Products extends Component {
         this.loadCategories()
     }
     removeCategory(category) {
-        axios
-            .delete(`http://localhost:3001/categories/${category.id}`)
+        Api.deleteCategory(category.id)
             .then((res) => this.loadCategories())
     }
     renderCategory(cat) {
