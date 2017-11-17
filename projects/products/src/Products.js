@@ -126,6 +126,7 @@ class Products extends Component {
                                 readCategory={this.props.readCategory}
                                 products={this.props.products}
                                 category={this.props.category}
+                                removeProduct={this.props.removeProduct}
                                 />
                         }
                     } />

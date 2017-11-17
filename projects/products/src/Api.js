@@ -13,6 +13,7 @@ const apis = {
     
     createProduct: (product) => api.post('products', product),
     loadProducts: (catId) => api.get(`products?category=${catId}`),
+    deleteProduct: (id) => api.delete(`products/${id}`)
 }
 
 export default apis

@@ -11,6 +11,7 @@ class Category extends Component {
         }
 
         this.loadData = this.loadData.bind(this)
+        this.renderProduct = this.renderProduct.bind(this)
     }
     loadData(id) {
         this.setState({ id })
@@ -29,7 +30,13 @@ class Category extends Component {
     }
     renderProduct(product, _key) {
         return (
-            <p className='well' key={_key}>{product.product}</p>
+            <p className='well' key={_key}>
+                {product.product}
+                <button onClick={() => {
+                    this.props.removeProduct(product)
+                        .then((res) => this.loadData(this.props.match.params.id))
+                }}>Remove</button>
+            </p>
         )
     }
     render() {

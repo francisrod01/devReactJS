@@ -16,6 +16,7 @@ class App extends Component {
     this.createProduct = this.createProduct.bind(this)
     this.loadProducts = this.loadProducts.bind(this)
     this.readCategory = this.readCategory.bind(this)
+    this.removeProduct = this.removeProduct.bind(this)
 
     this.state = {
       categories: [],
@@ -62,6 +63,9 @@ class App extends Component {
         })
       })
   }
+  removeProduct(product) {
+    return this.props.api.deleteProduct(product.id)
+  }
   render() {
     return (
       <Router>
@@ -101,6 +105,7 @@ class App extends Component {
                 readCategory={this.readCategory}
                 products={this.state.products}
                 category={this.state.category}
+                removeProduct={this.removeProduct}
                 />)
             }} />
           </div>
