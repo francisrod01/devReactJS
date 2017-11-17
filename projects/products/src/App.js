@@ -14,9 +14,13 @@ class App extends Component {
     this.editCategory = this.editCategory.bind(this)
     this.removeCategory = this.removeCategory.bind(this)
     this.createProduct = this.createProduct.bind(this)
+    this.loadProducts = this.loadProducts.bind(this)
+    this.readCategory = this.readCategory.bind(this)
 
     this.state = {
-      categories: []
+      categories: [],
+      category: {},
+      products: [],
     }
   }
   loadCategories() {
@@ -41,6 +45,22 @@ class App extends Component {
   }
   createProduct(product) {
     return this.props.api.createProduct(product)
+  }
+  loadProducts(category) {
+    this.props.api.loadProducts(category)
+      .then((res) => {
+        this.setState({
+          products: res.data
+        })
+      })
+  }
+  readCategory(id) {
+    this.props.api.readCategory(id)
+      .then((res) => {
+        this.setState({
+          category: res.data
+        })
+      })
   }
   render() {
     return (
@@ -77,6 +97,10 @@ class App extends Component {
                 removeCategory={this.removeCategory}
 
                 createProduct={this.createProduct}
+                loadProducts={this.loadProducts}
+                readCategory={this.readCategory}
+                products={this.state.products}
+                category={this.state.category}
                 />)
             }} />
           </div>

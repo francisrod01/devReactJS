@@ -78,9 +78,10 @@ class Products extends Component {
     }
     handleEditCategory(key) {
         if (key.keyCode === 13) {
+            const id = this.state.editingCategory
             this.props.editCategory({
-                id: this.state.editingCategory,
-                category: this.refs['cat-' + this.state.editingCategory].value
+                id: id,
+                category: this.refs['cat-' + id].value
             })
             this.setState({
                 editingCategory: ''
@@ -118,7 +119,16 @@ class Products extends Component {
                                 />
                         }
                     } />
-                    <Route exact path={match.url + '/category/:catId'} component={Category} />
+                    <Route exact path={match.url + '/category/:id'} 
+                        render={(props) => {
+                            return <Category {...props}
+                                loadProducts={this.props.loadProducts}
+                                readCategory={this.props.readCategory}
+                                products={this.props.products}
+                                category={this.props.category}
+                                />
+                        }
+                    } />
                 </div>
             </div>
         )

@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import axios from 'axios'
 
 class Category extends Component {
     constructor(props) {
@@ -7,37 +6,26 @@ class Category extends Component {
 
         this.state = {
             products: [],
-            category: {}
+            category: {},
+            id: null
         }
 
         this.loadData = this.loadData.bind(this)
     }
-    loadData(catId) {
-        const prodUrl = `http://localhost:3001/products?category=${catId}`
-        const catUrl = `http://localhost:3001/categories/${catId}`
-        axios
-            .get(prodUrl)
-            .then(res => {
-                this.setState({
-                    products: res.data
-                })
-            })
-        
-        axios
-            .get(catUrl)
-            .then(res => {
-                this.setState({
-                    category: res.data
-                })
-            })
+    loadData(id) {
+        this.setState({ id })
+        this.props.loadProducts(id)
+        this.props.readCategory(id)
     }
     componentDidMount() {
-        const catId = this.props.match.params.catId
-        this.loadData(catId)
+        const id = this.props.match.params.id
+        this.loadData(id)
     }
     componentWillReceiveProps(newProps) {
-        const catId = newProps.match.params.catId
-        this.loadData(catId)
+        const id = newProps.match.params.id
+        if (id !== this.state.id) {
+            this.loadData(id)
+        }
     }
     renderProduct(product, _key) {
         return (
@@ -47,8 +35,8 @@ class Category extends Component {
     render() {
         return (
             <div>
-                <h1>Category: "{this.state.category.category}"</h1>
-                { this.state.products.map(this.renderProduct) }
+                <h1>Category: "{this.props.category.category}"</h1>
+                { this.props.products.map(this.renderProduct) }
             </div>
         )
     }
