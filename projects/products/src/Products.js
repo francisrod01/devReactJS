@@ -13,6 +13,7 @@ class Products extends Component {
             categories: []
         }
         
+        this.renderCategory = this.renderCategory.bind(this)
         this.handleNewCategory = this.handleNewCategory.bind(this)
         this.loadCategories = this.loadCategories.bind(this)
     }
@@ -28,10 +29,18 @@ class Products extends Component {
     componentDidMount() {
         this.loadCategories()
     }
-    renderCategory(_cat, _key) {
+    removeCategory(category) {
+        axios
+            .delete(`http://localhost:3001/categories/${category.id}`)
+            .then((res) => this.loadCategories())
+    }
+    renderCategory(cat) {
         return (
-            <li key={_key}>
-                <Link to={`/products/category/${_cat.id}`}>{_cat.category}</Link>
+            <li key={cat.id}>
+                <Link to={`/products/category/${cat.id}`}>{cat.category}</Link>
+                <button className='btn btn-sm' onClick={() => this.removeCategory(cat)}>
+                    <span className='glyphicon glyphicon-remove'></span>
+                </button>
             </li>
         )
     }
