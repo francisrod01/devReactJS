@@ -43,6 +43,9 @@ class Category extends Component {
         return (
             <div>
                 <h1>Category: "{this.props.category.category}"</h1>
+                { this.props.products.length === 0 &&
+                    <p className='alert alert-info'>Nothing to show here.</p>
+                }
                 { this.props.products.map(this.renderProduct) }
             </div>
         )
