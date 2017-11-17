@@ -40,7 +40,7 @@ class App extends Component {
       .then((res) => this.loadCategories())
   }
   createProduct(product) {
-    this.props.api.createProduct(product)
+    return this.props.api.createProduct(product)
   }
   render() {
     return (
