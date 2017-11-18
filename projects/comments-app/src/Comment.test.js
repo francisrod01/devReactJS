@@ -6,7 +6,11 @@ import Comment from './Comment'
 
 describe('<Comment />', () => {
     const comment = {
-        comment: 'test'
+        comment: 'test comment',
+        user: {
+            name: "Name test",
+            uid: "xxxxx"
+        }
     }
 
     it('renders without crashing', () => {
@@ -19,6 +23,6 @@ describe('<Comment />', () => {
     })
     it('comment must be the same value returned by Comment component', () => {
         const wrapper = shallow(<Comment comment={comment} />)
-        expect(wrapper.text()).toBe(comment.comment)
+        expect(wrapper.text()).toBe(comment.user.name + ':' + comment.comment)
     })
 })
