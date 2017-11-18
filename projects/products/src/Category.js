@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
+
 
 class Category extends Component {
     constructor(props) {
@@ -36,6 +38,7 @@ class Category extends Component {
                     this.props.removeProduct(product)
                         .then((res) => this.loadData(this.props.match.params.id))
                 }}>Remove</button>
+                <Link to={`/products/edit/${product.id}`}>Edit</Link>
             </p>
         )
     }

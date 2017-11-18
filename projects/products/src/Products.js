@@ -4,6 +4,7 @@ import {Route, Link} from 'react-router-dom'
 import ProductsHome from './ProductsHome'
 import Category from './Category'
 import ProductsNew from './ProductsNew'
+import ProductsEdit from './ProductsEdit'
 
 class Products extends Component {
     constructor(props) {
@@ -119,6 +120,15 @@ class Products extends Component {
                                 />
                         }
                     } />
+                    <Route path={match.url + '/edit/:id'}
+                        render={(props) => {
+                            return <ProductsEdit {...props}
+                                categories={categories}
+                                readProduct={this.props.readProduct}
+                                editProduct={this.props.editProduct}
+                                />
+                        }}
+                    /> 
                     <Route exact path={match.url + '/category/:id'} 
                         render={(props) => {
                             return <Category {...props}
