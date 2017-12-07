@@ -1,0 +1,11 @@
+{
+  "name": "redux-node",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Francis Rodrigues",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "redux": "^3.7.2"
+  }
+}
