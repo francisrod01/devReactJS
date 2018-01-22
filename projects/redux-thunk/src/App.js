@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import logger from 'redux-logger'
 
 import { reducer } from './reducer'
+import { Info } from './Info'
 
 const store = createStore(
   reducer,
@@ -15,7 +16,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <div className="App">
-          
+          <Info />
         </div>
       </Provider>
     )
