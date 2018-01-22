@@ -5,9 +5,15 @@ import { loadData } from './actions'
 
 
 export class Info extends Component {
+    componentDidMount() {
+        this.props.loadData()
+    }
     render() {
+        if (this.props.isFetching) {
+            return <span>Loading...</span>
+        }
         return (
-            <span>Info</span>
+            <span>Info: { this.props.data.origin }</span>
         )
     }
 }
@@ -15,6 +21,7 @@ export class Info extends Component {
 const mapStateToProps = (state) => {
     return {
         isFetching: state.isFetching,
+        data: state.data,
     }
 }
 
