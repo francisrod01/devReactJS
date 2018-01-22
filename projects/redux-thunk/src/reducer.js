@@ -1,6 +1,7 @@
 const INITIAL_STATE = {
     data: [],
     isFetching: false,
+    error: false,
 }
 
 export const reducer = (state = INITIAL_STATE, action) => {
@@ -8,11 +9,19 @@ export const reducer = (state = INITIAL_STATE, action) => {
         return {
             isFetching: true,
             data: [],
+            error: false,
         }
     } else if (action.type === 'LOAD_DATA_SUCCESS') {
         return {
             isFetching: false,
             data: action.data,
+            error: false,
+        }
+    } else if (action.type === 'LOAD_DATA_ERROR') {
+        return {
+            isFetching: false,
+            data: [],
+            error: true,
         }
     }
     return state
