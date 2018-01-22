@@ -29,3 +29,34 @@ export const loadData = () => {
             .catch(() => dispatch(loadDataError()))
     }
 }
+
+///// Load user agent.
+
+export const loadUARequest = () => {
+    return {
+        type: 'LOAD_UA_REQUEST',
+    }
+}
+
+export const loadUASuccess = (loadUA) => {
+    return {
+        type: 'LOAD_UA_SUCCESS',
+        data: loadUA
+    }
+}
+
+export const loadUAError = () => {
+    return {
+        type: 'LOAD_UA_ERROR',
+    }
+}
+
+export const loadUA = () => {
+    return dispatch => {
+        dispatch(loadUARequest())
+        axios
+            .get('http://httpbin.org/user-agent')
+            .then(({ data }) => dispatch(loadUASuccess(data)))
+            .catch(() => dispatch(loadUAError()))
+    }
+}

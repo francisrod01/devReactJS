@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { loadData } from './actions'
+import { loadUA } from './actions'
 
 
-export class Info extends Component {
+export class UserAgent extends Component {
     componentDidMount() {
         this.props.loadData()
     }
@@ -17,7 +17,7 @@ export class Info extends Component {
         }
         return (
             <div>
-                <span>Info: { this.props.data.origin }</span>
+                <span>UserAgent: { this.props.data['user-agent'] }</span>
             </div>
         )
     }
@@ -25,16 +25,16 @@ export class Info extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        isFetching: state.ip.isFetching,
-        data: state.ip.data,
-        error: state.ip.error,
+        isFetching: state.ua.isFetching,
+        data: state.ua.data,
+        error: state.ua.error,
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        loadData: () => dispatch(loadData())
+        loadData: () => dispatch(loadUA())
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Info)
+export default connect(mapStateToProps, mapDispatchToProps)(UserAgent)
