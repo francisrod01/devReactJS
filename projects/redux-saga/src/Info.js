@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { loadData } from './actions'
+import { loadDataRequest } from './actions'
 
 
 class Info extends Component {
     render() {
         return (
             <div>
-                <p>Info</p>
+                <p>Info: { this.props.data }</p>
+                <button onClick={() => this.props.loadData()}>Load</button>
             </div>
         )
     }
@@ -24,7 +25,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        loadData: () => dispatch(loadData())
+        loadData: () => dispatch(loadDataRequest())
     }
 }
 

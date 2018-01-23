@@ -1,12 +1,12 @@
 export const loadDataRequest = () => {
     return {
-        type: 'LOAD_DATA_REQUEST',
+        type: 'LOAD_DATA_IP_REQUEST',
     }
 }
 
-export const loadData = () => {
+export const loadDataSuccess = (data) => {
     return {
-        type: 'LOAD_DATA',
-        data: [],
+        type: 'LOAD_DATA_IP_SUCCESS',
+        data: data,
     }
 }
