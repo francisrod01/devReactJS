@@ -5,13 +5,37 @@ import logo from './assets/logo.png'
 
 
 export default class App extends React.Component {
+  constructor(props) {
+    super(props)
+
+
+    // Defining binds.
+    this.findMyIp = this.findMyIp.bind(this)
+    
+
+    // Defining states.
+    this.state = {
+      data: '',
+    }
+  }
+  async findMyIp() {
+    this.setState({
+      data: 'Discovering IP...',
+    })
+
+    const ip = await fetch('http://httpbin.org/ip')
+    const data = await ip.json()
+    this.setState({
+      data: data.origin,
+    })
+  }
   render() {
     return (
       <View style={styles.container}>
 		<View style={styles.body}>
 			<Image source={logo} />
-			<Text style={styles.ip}>IP</Text>
-			<Button title='Discover my IP' />
+			<Text style={styles.ip}>{this.state.data || 'IP'}</Text>
+			<Button title='Discover my IP' onPress={this.findMyIp} />
 		</View>
 		<View style={styles.footer}>
 			<Text style={styles.made}>
