@@ -16,7 +16,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 yarn.lock
-
+*-lock.json
 
 # VsCode IDE history tool
 .history/
