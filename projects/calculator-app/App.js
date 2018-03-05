@@ -13,10 +13,18 @@ export default class App extends React.Component {
 
         <View style={styles.buttons}>
           <View style={styles.col1}>
-            <Text>Col1</Text>
+            <View style={styles.line}>
+              <Text style={styles.btn}>Col1</Text>
+              <Text style={styles.btn}>Col1</Text>
+              <Text style={styles.btn}>Col1</Text>
+            </View>
           </View>
           <View style={styles.col2}>
-            <Text>Col2</Text>
+            <View style={styles.line}>
+              <Text>Col2</Text>
+              <Text>Col2</Text>
+              <Text>Col2</Text>
+            </View>
           </View>
         </View>
 
@@ -59,5 +67,12 @@ const styles = StyleSheet.create({
   col2: {
     flex: 1,
     backgroundColor: 'red',
+  },
+  line: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  btn: {
+    flex: 1,
   },
 })
