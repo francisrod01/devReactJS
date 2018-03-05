@@ -118,11 +118,11 @@ const styles = StyleSheet.create({
   },
   col1: {
     flex: 3,
-    backgroundColor: 'grey',
+    backgroundColor: '#000000',
   },
   col2: {
     flex: 1,
-    backgroundColor: 'red',
+    backgroundColor: '#0b0b0b',
   },
   line: {
     flex: 1,
@@ -135,5 +135,6 @@ const styles = StyleSheet.create({
   btnText: {
     textAlign: 'center',
     fontSize: 50,
+    color: 'white',
   },
 })
