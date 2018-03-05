@@ -10,6 +10,13 @@ export default class App extends React.Component {
       ['1', '2', '3'],
       [',', '0', '='],
     ]
+    const col2Buttons = [
+      'C',
+      '/',
+      'X',
+      '-',
+      '+',
+    ]
     return (
       <View style={styles.container}>
 
@@ -30,11 +37,11 @@ export default class App extends React.Component {
             )) }
           </View>
           <View style={styles.col2}>
-            <View style={styles.line}>
-              <Text>Col2</Text>
-              <Text>Col2</Text>
-              <Text>Col2</Text>
-            </View>
+            { col2Buttons.map((op, i) => (
+              <View key={i} style={styles.btn}>
+                  <Text style={styles.btnText}>{op}</Text>
+              </View>
+            )) }
           </View>
         </View>
 
