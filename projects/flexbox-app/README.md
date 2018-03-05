@@ -4,6 +4,10 @@ This project was bootstrapped with [Create React Native App](https://github.com/
 
 Author: [Francis Rodrigues](https://github.com/francisrod01)
 
+**Screenshot:**
+
+![](screenshot.png)
+
 
 ## Available Scripts
 
