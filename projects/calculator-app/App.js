@@ -16,9 +16,31 @@ export default class App extends React.Component {
     }
   }
   handleOp(op) {
-    this.setState({
-      display: this.state.display + op,
-    })
+    if (op === 'C') {
+      this.setState({
+        display: '',
+        result: '',
+      })
+    } else if (op === '=') {
+      this.setState({
+        display: this.state.result,
+        result: '',
+      })
+    } else {
+      const display = this.state.display + op
+      let result = this.state.result
+
+      try {
+        let fixedOperation = display.split('X').join('*')
+        fixedOperation = fixedOperation.split('/').join('/')
+        result = new String(eval(fixedOperation)).toString()
+      } catch (err) {}
+
+      this.setState({
+        display,
+        result,
+      })
+    }
   }
   render() {
     const col1Buttons = [
