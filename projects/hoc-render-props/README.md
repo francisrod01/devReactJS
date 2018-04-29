@@ -75,10 +75,6 @@ export default class Card extends Component {
 }
 ```
 
-**Screenshot:**
-
-![Render Props screenshot](./screenshots/render-props.gif)
-
 ## References ##
 
 - [ReactJS][2]
