@@ -3,9 +3,11 @@ import React, { Component } from 'react'
 import logo from './logo.svg'
 import './App.css'
 
-import MyIp from './MyIp'
-import MyUserAgent from './MyUserAgent'
-import Card from './Card'
+// import MyIp from './MyIp'
+// import MyUserAgent from './MyUserAgent'
+import Http from './Http'
+// import Card from './Card'
+
 
 class App extends Component {
   render() {
@@ -20,12 +22,33 @@ class App extends Component {
             <MyIp style={{ backgroundColor: 'red' }} />
             <MyUserAgent />
           */}
-          <Card
+
+          <Http
+            url='http://httpbin.org/ip'
+          >
+            {state => (
+              <div>
+                <p>My IP is: {JSON.stringify(state)}</p>
+              </div>
+            )}
+          </Http>
+
+          <Http
+            url='http://httpbin.org/user-agent'
+          >
+            {state => (
+              <div>
+                <p>My UA is: {JSON.stringify(state)}</p>
+              </div>
+            )}
+          </Http>
+
+          {/*<Card
             header={state => <p>{JSON.stringify(state)}</p>}
             body={<div>This is my body text.</div>}
           >
             {state => <p>Children: {state.counter}</p>}
-          </Card>
+          </Card>*/}
         </div>
       </div>
     )

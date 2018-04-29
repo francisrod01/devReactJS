@@ -18,6 +18,10 @@ Concretely, `a higher-order component is a function that takes a component and r
 
 ### Render Props ###
 
+> The term `render prop` refers to a simple technique for sharing code between React components using a prop whose value is a function.
+
+A component with a render prop takes a function that returns a React element and calls it instead of implementing its own render logic.
+
 ```jsx
 import React, { Component } from 'react'
 import Card from './Card'
