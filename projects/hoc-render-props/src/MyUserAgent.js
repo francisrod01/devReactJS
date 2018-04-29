@@ -1,41 +1,17 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 
-class MyAgent extends Component {
-  constructor(props) {
-    super(props)
+import withHttp from './withHttp'
 
-    this.state = {
-      isLoading: false,
-      agent: null
-    }
+
+const url = 'http://httpbin.org/user-agent'
+
+const MyAgent = props => {
+  if (props.isLoading && props.data) {
+    return <p>Loading...</p>
   }
-  componentDidMount() {
-    this.setState({
-      isLoading: true
-    })
-    
-    axios
-      .get('http://httpbin.org/user-agent')
-      .then(res => {
-        const response = res.data
-        if (response['user-agent']) {
-          this.setState({
-            isLoading: false,
-            agent: response['user-agent']
-          })
-        }
-      })
-  }
-  render() {
-    const { isLoading, agent } = this.state
-    if (isLoading) {
-      return <p>Loading...</p>
-    }
-    return (
-      <p>My agent is: {agent}</p>
-    )
-  }
+  return (
+    <p>My agent is: {props.data['user-agent']}</p>
+  )
 }
 
-export default MyAgent
+export default withHttp(url)(MyAgent)
