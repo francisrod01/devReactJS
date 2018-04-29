@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 import logo from './logo.svg'
 import './App.css'
@@ -53,6 +54,11 @@ class App extends Component {
       </div>
     )
   }
+}
+
+Http.propTypes = {
+  children: PropTypes.func.isRequired,
+  url: PropTypes.string.isRequired
 }
 
 export default App
