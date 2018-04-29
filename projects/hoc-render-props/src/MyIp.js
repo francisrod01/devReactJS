@@ -10,7 +10,7 @@ const MyIp = props => {
     return <p>Loading...</p>
   }
   return (
-    <p>My ip is: {props.data.origin}</p>
+    <p style={props.style}>My ip is: {props.data.origin}</p>
   )
 }
 
