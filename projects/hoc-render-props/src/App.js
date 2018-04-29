@@ -5,6 +5,7 @@ import './App.css'
 
 import MyIp from './MyIp'
 import MyUserAgent from './MyUserAgent'
+import Card from './Card'
 
 class App extends Component {
   render() {
@@ -15,8 +16,16 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <div>
-          <MyIp style={{ backgroundColor: 'red' }} />
-          <MyUserAgent />
+          {/*
+            <MyIp style={{ backgroundColor: 'red' }} />
+            <MyUserAgent />
+          */}
+          <Card
+            header={state => <p>{JSON.stringify(state)}</p>}
+            body={<div>This is my body text.</div>}
+          >
+            {state => <p>Children: {state.counter}</p>}
+          </Card>
         </div>
       </div>
     )
