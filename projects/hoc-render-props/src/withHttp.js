@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
-const withHttp = WrappedComponent => {
+const withHttp = url => WrappedComponent => {
   return class extends Component {
     constructor(props) {
       super(props)
@@ -17,7 +17,7 @@ const withHttp = WrappedComponent => {
       })
       
       axios
-        .get('http://httpbin.org/ip')
+        .get(url)
         .then(res => {
           this.setState({
             isLoading: false,
