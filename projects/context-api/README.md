@@ -48,6 +48,57 @@ export default class App extends Component {
 }
 ```
 
+**Making changes through a Context:**
+
+```jsx
+// Creates a { Provider, Consumer } pair.
+const AuthContext = React.createContext()
+
+// Provide a available state after a point.
+const Provider = AuthContext.Provider
+
+// Consume changes in React components.
+const Consumer = AuthContext.Consumer
+
+// This component does not receive props.
+const Title = () => {
+  return (
+    <Consumer>
+      {auth => {
+        if (!auth.isAuth) {
+          return <h1>Please, log-in</h1>
+        }
+        return <h1 className="App-title">Welcome {auth.user}</h1>
+      }}
+    </Consumer>
+  )
+}
+
+const Header = props => (
+  <header className="App-header">
+    <img src={logo} className="App-logo" alt="logo" />
+
+    <Title /> {/* without passing props */}
+  </header>
+)
+
+...
+
+export default class App extends Component {
+  ...
+  render() {
+    return (
+      <Provider value={this.state.auth}>
+        <div className="App">
+          <Header />
+          ...
+        </div>
+      </Provider>
+    )
+  }
+}
+```
+
 ## References ##
 
 - [ReactJS][2]
