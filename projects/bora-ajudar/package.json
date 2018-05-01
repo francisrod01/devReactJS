@@ -11,9 +11,12 @@
     "react-scripts": "1.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-app-env --env-file=.env.dev start",
+    "build": "react-app-env --env-file=.env.prod build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "react-app-env": "^1.2.0"
   }
 }
