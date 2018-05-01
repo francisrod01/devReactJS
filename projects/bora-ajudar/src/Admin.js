@@ -1,7 +1,12 @@
 import React , { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 
 import { auth } from './base';
+
+import AdminCampaigns from './AdminCampaigns';
+
+
+const AdminHome = props => <p>Welcome to Dashboard</p>
 
 class Admin extends Component {
   constructor(props) {
@@ -32,7 +37,15 @@ class Admin extends Component {
       return <Redirect to='/login' />
     }
     return (
-      <h1>Admin {JSON.stringify(this.state)}</h1>
+      <div className='card'>
+        <h1>Admin Management</h1>
+
+        <Route path='/' component={AdminHome} />
+        <Route
+          path={`${this.props.match.url}/campaigns`}
+          component={AdminCampaigns}
+        />
+      </div>
     );
   }
 }
