@@ -14,6 +14,7 @@ class Campaigns extends Component {
 
     // Bindable functions to access this object.
     this.renderCampaign = this.renderCampaign.bind(this);
+    this.handleSave = this.handleSave.bind(this);
     this.remove = this.remove.bind(this);
   }
   componentDidMount() {
@@ -22,6 +23,14 @@ class Campaigns extends Component {
       state: 'campaigns',
       asArray: false
     });
+  }
+  handleSave() {
+    const name = this.name.value;
+    const description = this.description.value;
+
+    base.push('campaigns', {
+      data: { name, description }
+    }, err => console.log('Error to save it: ', err));
   }
   remove(key) {
     // const {
@@ -47,6 +56,13 @@ class Campaigns extends Component {
     return (
       <div>
         <h1>Campaigns</h1>
+
+        <div>
+          <h2>New Campaign</h2>
+          Name: <input type='text' ref={ref => this.name = ref} />
+          <br />Description: <textarea ref={ref => this.description = ref}></textarea>
+          <br /><button onClick={this.handleSave}>Save</button> 
+        </div>
 
         <ul>
           {
