@@ -10,6 +10,11 @@ class Campaigns extends Component {
     this.state = {
       campaigns: {}
     }
+
+
+    // Bindable functions to access this object.
+    this.renderCampaign = this.renderCampaign.bind(this);
+    this.remove = this.remove.bind(this);
   }
   componentDidMount() {
     base.syncState('campaigns', {
@@ -19,7 +24,12 @@ class Campaigns extends Component {
     });
   }
   renderCampaign = (index, campaign) => (
-    <li key={index}>{campaign.name}</li>
+    <li key={index}>
+      {campaign.name}
+      &nbsp;
+      <button onClick={() => null}>Edit</button>
+      <button onClick={() => null}>Remove</button>
+    </li>
   );
   render() {
     return (
