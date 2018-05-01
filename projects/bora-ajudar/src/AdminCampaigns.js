@@ -29,8 +29,17 @@ class Campaigns extends Component {
     const description = this.description.value;
 
     base.push('campaigns', {
-      data: { name, description }
-    }, err => console.log('Error to save it: ', err));
+      data: { name, description },
+      then: err => {
+        if (err) {
+          console.log('Error to save it: ', err)
+        }
+        else {
+          this.name.value = '';
+          this.description.value = '';
+        }
+      }
+    });
   }
   remove(key) {
     // const {
