@@ -23,12 +23,24 @@ class Campaigns extends Component {
       asArray: false
     });
   }
+  remove(key) {
+    // const {
+    //   [key]: undefined,
+    //   ...newCampaignsObject
+    // } = this.state.campaigns;
+
+    // this.setState({ campaigns: newCampaignsObject });
+
+    base.remove(`campaigns/${key}`, err => {
+      console.log('Error to remove: ', err);
+    });
+  }
   renderCampaign = (index, campaign) => (
     <li key={index}>
       {campaign.name}
       &nbsp;
       <button onClick={() => null}>Edit</button>
-      <button onClick={() => null}>Remove</button>
+      <button onClick={() => this.remove(index)}>Remove</button>
     </li>
   );
   render() {
