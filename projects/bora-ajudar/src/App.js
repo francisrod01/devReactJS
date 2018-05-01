@@ -7,6 +7,7 @@ import {
 import Header from './Header';
 import Home from './Home';
 import About from './About';
+import Contact from './Contact';
 import Footer from './Footer';
 
 
@@ -19,6 +20,7 @@ class App extends Component {
 
           <Route exact path='/' component={Home} />
           <Route path='/about' component={About} />
+          <Route path='/contact' component={Contact} />
 
           <Footer />
         </div>
