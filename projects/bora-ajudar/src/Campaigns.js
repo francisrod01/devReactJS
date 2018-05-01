@@ -32,13 +32,26 @@ class Campaigns extends Component {
           <div className='product-item-description d-flex ml-auto'>
             <div className='p-5 rounded'>
               <p className='mb-0'>{campaign.description}</p>
-              <div className='progress'>
-                <div className='progress-bar bg-success' role='progressbar' style={{ width: '25%' }} aria-valuenow='25' aria-valuemin='0' aria-valuemax='100'></div>
-              </div>
-              <p>Meta: R$ 5.000,00 / Atingidos: R$ 2.500,00</p>
-              <div>
-                <button className='btn btn-success'>Contribuir</button>
-              </div>
+
+              {campaign.type === 'money' && (
+                <div>
+                  <div className='progress'>
+                    <div className='progress-bar bg-success' role='progressbar' style={{ width: '25%' }} aria-valuenow='25' aria-valuemin='0' aria-valuemax='100'></div>
+                  </div>
+                  <p>Meta: R$ 5.000,00 / Atingidos: R$ 2.500,00</p>
+                  <div>
+                    <button className='btn btn-success'>Contribuir</button>
+                  </div>
+                </div>
+              )}
+
+              {campaign.type === 'products' && (
+                <div>
+                  <h4>How to donate:</h4>
+                  <p>{campaign.howDonate}</p>
+                </div>
+              )}
+
             </div>
           </div>
           <div className='ml-auto'>
