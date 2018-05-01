@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { auth } from './base';
+
 
 class Login extends Component {
   constructor(props) {
@@ -14,6 +16,14 @@ class Login extends Component {
     console.log('login: ',
     this.email.value,
     this.passwd.value);
+
+    const email = this.email.value;
+    const passwd = this.passwd.value;
+
+    auth
+      .signInWithEmailAndPassword(email, passwd)
+      .then(user => console.log('user === ', user))
+      .catch(err => console.error('ERROR: ', err));
   }
   render() {
     return (
