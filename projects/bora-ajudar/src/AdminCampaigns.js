@@ -69,7 +69,27 @@ class Campaigns extends Component {
         <div>
           <h2>New Campaign</h2>
           Name: <input type='text' ref={ref => this.name = ref} />
+          <br />Subtitle: <input type='text' ref={ref => this.subtitle = ref} />
           <br />Description: <textarea ref={ref => this.description = ref}></textarea>
+          <br />Type:
+          <br /><input type='radio' name='type' onClick={() => this.setState({ type: 'donate' })} /> Donation
+          <br /><input type='radio' name='type' onClick={() => this.setState({ type: 'products' })} /> Products
+          
+          {this.state.type === 'donate' && (
+            <div>
+              <h4>Donation</h4>
+              Goal: <input type='text' ref={ref => this.goal = ref} />
+              <br />Donated: <input type='text' ref={ref => this.donated = ref} defaultValue={0} />
+            </div>
+          )}
+
+          {this.state.type === 'products' && (
+            <div>
+              <h4>Products</h4>
+              How to donate: <input type='text' ref={ref => this.howDonate = ref} />
+            </div>
+          )}
+
           <br /><button onClick={this.handleSave}>Save</button> 
         </div>
 
