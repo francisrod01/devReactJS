@@ -26,17 +26,36 @@ class Campaigns extends Component {
   }
   handleSave() {
     const name = this.name.value;
+    const subtitle = this.subtitle.value;
     const description = this.description.value;
+    const type = this.state.type;
+    const howDonate = this.state.type === 'products' ? this.howDonate.value : null;
+    const goal = this.state.type === 'donate' ? this.goal.value : null;
+    const donated = this.state.type === 'donate' ? this.donated.value : null;
 
     base.push('campaigns', {
-      data: { name, description },
+      data: { name, subtitle, description, type, howDonate, goal, donated },
       then: err => {
         if (err) {
           console.log('Error to save it: ', err)
         }
         else {
           this.name.value = '';
+          this.subtitle.value = '';
           this.description.value = '';
+          this.setState({ type: '' });
+          
+          if (this.meta) {
+            this.meta.value = '';
+          }
+
+          if (this.donated) {
+            this.donated.value = '';
+          }
+
+          if (this.howDonate) {
+            this.howDonate.value = '';
+          }
         }
       }
     });
