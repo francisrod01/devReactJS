@@ -17,3 +17,7 @@
 
 # IDE's libraries
 .history/
+
+# Firebase sensible config
+.firebaserc
+database.rules.json
