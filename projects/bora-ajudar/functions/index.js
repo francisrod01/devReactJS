@@ -18,8 +18,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Define constants.
 const email = envs.PAGSEGURO_EMAIL;
 const token = envs.PAGSEGURO_TOKEN;
-const checkoutUrl = envs.PAGSEGURO_URI;
-const paymentUrl = checkoutUrl + '/payment.html?code=';
+const pagseguroUri = envs.PAGSEGURO_URI;
+const checkoutUri = envs.PAGSEGURO_CHECKOUT_URI;
+const paymentUrl = checkoutUri + '?code=';
 
 // Define routes.
 app.get('/', (req, res, next) => {
@@ -42,7 +43,7 @@ app.post('/donate', (req, res, next) => {
   }
 
   request({
-    uri: checkoutUrl,
+    uri: pagseguroUri,
     method: 'POST',
     form,
     headers
