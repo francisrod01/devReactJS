@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 import base from './base';
+
+
+const API_URL = process.env.REACT_APP_API_URL;
 
 class Campaigns extends Component {
   constructor(props) {
@@ -16,6 +20,16 @@ class Campaigns extends Component {
       state: 'campaigns',
       asArray: false
     });
+  }
+  handleDonate(key) {
+    axios
+      .post(`${API_URL}/donate`, {
+        campaign: key,
+        value: 3
+      })
+      .then(response => {
+        console.log('=== handleDonate response: ', response);
+      });
   }
   renderCampaign = (index, campaign) => (
     <section key={index} className='page-section'>
@@ -33,14 +47,14 @@ class Campaigns extends Component {
             <div className='p-5 rounded'>
               <p className='mb-0'>{campaign.description}</p>
 
-              {campaign.type === 'money' && (
+              {campaign.type === 'donate' && (
                 <div>
                   <div className='progress'>
                     <div className='progress-bar bg-success' role='progressbar' style={{ width: '25%' }} aria-valuenow='25' aria-valuemin='0' aria-valuemax='100'></div>
                   </div>
-                  <p>Meta: R$ 5.000,00 / Atingidos: R$ 2.500,00</p>
+                  <p>Goal: R$ 5.000,00 / Donated: R$ 2.500,00</p>
                   <div>
-                    <button className='btn btn-success'>Contribuir</button>
+                    <button className='btn btn-success' onClick={() => this.handleDonate(index)}>Contribute</button>
                   </div>
                 </div>
               )}
