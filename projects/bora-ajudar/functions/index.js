@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Define constants.
 const email = envs.PAGSEGURO_EMAIL;
 const token = envs.PAGSEGURO_TOKEN;
-const pagseguroUri = envs.PAGSEGURO_URI;
+const pagSeguroUri = envs.PAGSEGURO_URI;
 const checkoutUri = envs.PAGSEGURO_CHECKOUT_URI;
 const paymentUrl = checkoutUri + '?code=';
 
@@ -43,18 +43,40 @@ app.post('/donate', (req, res, next) => {
   }
 
   request({
-    uri: pagseguroUri,
+    uri: pagSeguroUri,
     method: 'POST',
     form,
     headers
   })
-  .then(data => {
-    parse(data, (err, json) => {
-      res.send({
-        url: paymentUrl + json.checkout.code[0]
+    .then(data => {
+      parse(data, (err, json) => {
+        res.send({
+          url: paymentUrl + json.checkout.code[0]
+        });
       });
     });
-  });
+});
+
+app.post('/webhook', (req, res, next) => {
+  const notificationsUri = envs.PAGSEGURO_NOTIFICATIONS_URI;
+  const notificationCode = req.body.notificationCode;
+  const notificationsParams = '?email=' + email + '&token=' + token;
+  const notificationsFullUri = notificationsUri + '/' + notificationCode + notificationsParams;
+
+  request(notificationsFullUri)
+    .then(notificationXML => {
+      parse(notificationXML, (err, transactionJson) => {
+        const transaction = transactionJson.transaction;
+        const status = transaction.status[0];
+        const amount = transation.grossAmount[0];
+        const campaign = transaction.items[0].item[0].id[0];
+        
+        // Save data on Firebase.
+        //
+
+        res.send('OK');
+      });
+    });
 });
 
 exports.api = functions.https.onRequest(app);
