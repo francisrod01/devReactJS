@@ -28,7 +28,9 @@ class Campaigns extends Component {
         value: 3
       })
       .then(response => {
-        console.log('=== handleDonate response: ', response);
+        if (response.data && response.data.url) {
+          window.location = response.data.url;
+        }
       });
   }
   renderCampaign = (index, campaign) => (
