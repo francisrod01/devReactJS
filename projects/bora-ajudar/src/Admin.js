@@ -1,9 +1,10 @@
 import React , { Component } from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import { Switch, Redirect, Route } from 'react-router-dom';
 
 import { auth } from './base';
 
 import AdminCampaigns from './AdminCampaigns';
+import AdminEditCampaign from './AdminEditCampaign';
 
 
 const AdminHome = props => <p>Welcome to Dashboard</p>
@@ -20,7 +21,7 @@ class Admin extends Component {
   }
   componentDidMount() {
     auth.onAuthStateChanged(user => {
-      console.log('auth output: ', user);
+      // console.log('auth output: ', user);
 
       this.setState({
         isAuthing: false,
@@ -40,11 +41,17 @@ class Admin extends Component {
       <div className='card'>
         <h1>Admin Management</h1>
 
-        <Route path='/' component={AdminHome} />
-        <Route
-          path={`${this.props.match.url}/campaigns`}
-          component={AdminCampaigns}
-        />
+        <Switch>
+          <Route exact path={this.props.match.url} component={AdminHome} />
+          <Route
+            path={`${this.props.match.url}/campaigns/:id`}
+            component={AdminEditCampaign}
+          />
+          <Route
+            path={`${this.props.match.url}/campaigns`}
+            component={AdminCampaigns}
+          />
+        </Switch>
       </div>
     );
   }
