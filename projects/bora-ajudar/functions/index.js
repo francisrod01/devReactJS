@@ -32,14 +32,16 @@ app.get('/', (req, res, next) => {
 });
 
 app.post('/donate', (req, res, next) => {
+  const { campaign, value } = req.body;
+
   const form = {
     token,
     email,
     currency: 'BRL',
-    itemId1: 'campaignId',
+    itemId1: campaign,
     itemDescription1: 'Donation',
     itemQuantity1: 1,
-    itemAmount1: 2.53,
+    itemAmount1: value,
   }
   
   const headers = {
