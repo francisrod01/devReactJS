@@ -10,10 +10,11 @@ const request = require('request-promise');
 const parse = require('xml2js').parseString;
 const envs = require('./envs');
 
-admin.initializeApp(functions.config().firebase);
-
 // Automatically allow cross-origin requests.
 app.use(cors({ origin: true }));
+
+// Initialize firebase database.
+admin.initializeApp(functions.config().firebase);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
