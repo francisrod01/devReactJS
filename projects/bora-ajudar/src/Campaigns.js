@@ -13,6 +13,9 @@ class Campaigns extends Component {
     this.state = {
       campaigns: {}
     }
+
+    // Bindables
+    this.handleDonate = this.handleDonate.bind(this);
   }
   componentDidMount() {
     base.syncState('campaigns', {
@@ -25,7 +28,7 @@ class Campaigns extends Component {
     axios
       .post(`${API_URL}/donate`, {
         campaign: key,
-        value: 3
+        value: this.campaignValue.value
       })
       .then(response => {
         if (response.data && response.data.url) {
@@ -56,6 +59,11 @@ class Campaigns extends Component {
                   </div>
                   <p>Goal: R$ {campaign.goal} / Donated: R$ {campaign.donated}</p>
                   <div>
+                    <select ref={ref => this.campaignValue = ref}>
+                      <option value="2.00">R$ 2,00</option>
+                      <option value="10.00">R$ 10,00</option>
+                      <option value="30.00">R$ 30,00</option>
+                    </select>
                     <button className='btn btn-success' onClick={() => this.handleDonate(index)}>Contribute</button>
                   </div>
                 </div>
