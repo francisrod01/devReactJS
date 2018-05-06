@@ -1,4 +1,5 @@
 const functions = require('firebase-functions');
+const admin = require('firebase-admin');
 
 const express = require('express');
 const app = express();
@@ -8,6 +9,8 @@ const bodyParser = require('body-parser');
 const request = require('request-promise');
 const parse = require('xml2js').parseString;
 const envs = require('./envs');
+
+admin.initializeApp(functions.config().firebase);
 
 // Automatically allow cross-origin requests.
 app.use(cors({ origin: true }));
@@ -71,10 +74,32 @@ app.post('/webhook', (req, res, next) => {
         const amount = transation.grossAmount[0];
         const campaign = transaction.items[0].item[0].id[0];
         
-        // Save data on Firebase.
-        //
+        // Save donated data from campaign on Firebase.
+        admin
+          .database()
+          .ref(`/campaigns/${campaign}`)
+          .once('value')
+          .then(result => {
+            const currentCampaign = result.val();
+            const donated = parseFloat(currentCampaign.donated) + parseFloat(amount);
 
-        res.send('OK');
+            currentCampaign.donated = donated.toFixed(2);
+
+            admin
+              .database()
+              .ref(`/campaigns/${campaign}`)
+              .set(currentCampaign)
+              .then(() => {
+                res.send('OK');
+              });
+          });
+        
+        // Save transaction on Firebase.
+        admin
+          .database()
+          .ref(`/transactions/${transaction.code[0]}`)
+          .set(transaction)
+          .then(() => {});
       });
     });
 });
