@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import base from './base';
 
@@ -76,7 +77,7 @@ class Campaigns extends Component {
     <li key={index}>
       {campaign.name}
       &nbsp;
-      <button onClick={() => null}>Edit</button>
+      <Link to={`/admin/campaigns/${index}`}>Edit</Link>
       <button onClick={() => this.remove(index)}>Remove</button>
     </li>
   );
