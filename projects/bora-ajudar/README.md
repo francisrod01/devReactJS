@@ -74,6 +74,60 @@ Loads environment variables from `.env` for nodejs projects.
 
 [Dotenv][10] is a zero-dependency module that loads environment variables from a `.env` file into `process.env`. Storing configuration in the environment separate from code is based on The [Twelve-Factor App][11] methodology.
 
+## How to run it ##
+
+### Front-end ###
+
+First you will create a env file corresponding to your node environment mode and type as below:
+
+At this moment, you will run as `development`, so create a env file to front-end changing the values as the firebase configuration. This file is called as `.env.dev`.
+
+```bash
+API_URL=http://localhost:5001/bora-ajudar-abcd/us-central1/api
+FIREB_API_KEY=0123456789ABCDEFGHIJKLMNOP
+FIREB_AUTH_DOMAIN=bora-ajudar-abcd.firebaseapp.com
+FIREB_PROJECT_ID=bora-ajudar-abcd
+FIREB_DATABASE_URL=https://bora-ajudar-abcd.firebaseio.com
+FIREB_STORAGE_BUCKET=bora-ajudar-abcd.appspot.com
+FIREB_MESSAGING_SENDER_ID=0123456789
+```
+
+Run the localhost website as `yarn start` and see the output:
+
+```bash
+~$ react-app-env --env-file=.env.dev start
+Starting the development server...
+...
+Done in 14.72s.
+```
+
+### In the Back-end (API) ###
+
+Run the local API in `functions/`:
+
+At this moment, running as `development`, create a `.env.development` file and type the code below:
+
+```bash
+PAGSEGURO_URI=https://ws.pagseguro.uol.com.br/v2/checkout
+PAGSEGURO_CHECKOUT_URI=https://pagseguro.uol.com.br/v2/checkout/payment.html
+PAGSEGURO_NOTIFICATIONS_URI=https://ws.pagseguro.uol.com.br/v3/transactions/notifications
+PAGSEGURO_EMAIL=my-store-email@gmail.com
+PAGSEGURO_TOKEN=0123456789ABCDEFGHIJKLMNOP
+```
+
+Now run the `yarn serve` command and see the output:
+
+```bash
+$ firebase serve --only functions
+
+=== Serving from '/home/../projects/../bora-ajudar'...
+
+i  functions: Preparing to emulate functions.
+Warning: You're using Node.js v9.3.0 but Google Cloud Functions only supports v6.11.5.
+✔  functions: api: http://localhost:5000/bora-ajudar-abcd/us-central1/api
+info: Worker for api closed due to file changes.
+```
+
 ## References ##
 
 - [Console Firebase][2]
