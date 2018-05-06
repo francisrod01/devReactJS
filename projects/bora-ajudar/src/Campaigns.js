@@ -54,7 +54,7 @@ class Campaigns extends Component {
                   <div className='progress'>
                     <div className='progress-bar bg-success' role='progressbar' style={{ width: '25%' }} aria-valuenow='25' aria-valuemin='0' aria-valuemax='100'></div>
                   </div>
-                  <p>Goal: R$ 5.000,00 / Donated: R$ 2.500,00</p>
+                  <p>Goal: R$ {campaign.goal} / Donated: R$ {campaign.donated}</p>
                   <div>
                     <button className='btn btn-success' onClick={() => this.handleDonate(index)}>Contribute</button>
                   </div>
