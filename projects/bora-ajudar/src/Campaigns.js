@@ -36,55 +36,60 @@ class Campaigns extends Component {
         }
       });
   }
-  renderCampaign = (index, campaign) => (
-    <section key={index} className='page-section'>
-      <div className='container'>
-        <div className='product-item bg-faded'>
-          <div className='product-item-title d-flex'>
-            <div className='p-5 d-flex mr-auto rounded'>
-              <h2 className='section-heading mb-0'>
-                <span className='section-heading-upper'>{campaign.subtitle}</span>
-                <span className='section-heading-lower'>{campaign.name}</span>
-              </h2>
-            </div>
-          </div>
-          <div className='product-item-description d-flex ml-auto'>
-            <div className='p-5 rounded'>
-              <p className='mb-0'>{campaign.description}</p>
+  renderCampaign = (index, campaign) => {
+    const percentage = (parseFloat(campaign.donated) / parseFloat(campaign.goal)) * 100;
+    const parsedPercentage = parseInt(percentage);
 
-              {campaign.type === 'donate' && (
-                <div>
-                  <div className='progress'>
-                    <div className='progress-bar bg-success' role='progressbar' style={{ width: '25%' }} aria-valuenow='25' aria-valuemin='0' aria-valuemax='100'></div>
-                  </div>
-                  <p>Goal: R$ {campaign.goal} / Donated: R$ {campaign.donated}</p>
+    return (
+      <section key={index} className='page-section'>
+        <div className='container'>
+          <div className='product-item bg-faded'>
+            <div className='product-item-title d-flex'>
+              <div className='p-5 d-flex mr-auto rounded'>
+                <h2 className='section-heading mb-0'>
+                  <span className='section-heading-upper'>{campaign.subtitle}</span>
+                  <span className='section-heading-lower'>{campaign.name}</span>
+                </h2>
+              </div>
+            </div>
+            <div className='product-item-description d-flex ml-auto'>
+              <div className='p-5 rounded'>
+                <p className='mb-0'>{campaign.description}</p>
+
+                {campaign.type === 'donate' && (
                   <div>
-                    <select ref={ref => this.campaignValue = ref}>
-                      <option value="2.00">R$ 2,00</option>
-                      <option value="10.00">R$ 10,00</option>
-                      <option value="30.00">R$ 30,00</option>
-                    </select>
-                    <button className='btn btn-success' onClick={() => this.handleDonate(index)}>Contribute</button>
+                    <div className='progress'>
+                      <div className='progress-bar bg-success' role='progressbar' style={{ width: `${parsedPercentage}%` }} aria-valuenow='25' aria-valuemin='0' aria-valuemax='100'></div>
+                    </div>
+                    <p>Goal: R$ {campaign.goal} / Donated: R$ {campaign.donated}</p>
+                    <div>
+                      <select ref={ref => this.campaignValue = ref}>
+                        <option value="2.00">R$ 2,00</option>
+                        <option value="10.00">R$ 10,00</option>
+                        <option value="30.00">R$ 30,00</option>
+                      </select>
+                      <button className='btn btn-success' onClick={() => this.handleDonate(index)}>Contribute</button>
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
 
-              {campaign.type === 'products' && (
-                <div>
-                  <h4>How to donate:</h4>
-                  <p>{campaign.howDonate}</p>
-                </div>
-              )}
+                {campaign.type === 'products' && (
+                  <div>
+                    <h4>How to donate:</h4>
+                    <p>{campaign.howDonate}</p>
+                  </div>
+                )}
 
+              </div>
             </div>
-          </div>
-          <div className='ml-auto'>
-            
+            <div className='ml-auto'>
+              
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-  );
+      </section>
+    );
+  }
   render() {
     return (
       <div>
