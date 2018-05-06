@@ -39,6 +39,8 @@ class Campaigns extends Component {
   renderCampaign = (index, campaign) => {
     const percentage = (parseFloat(campaign.donated) / parseFloat(campaign.goal)) * 100;
     const parsedPercentage = parseInt(percentage);
+    const parsedGoal = parseFloat(campaign.goal).toFixed(2);
+    const parsedDonated = parseFloat(campaign.donated).toFixed(2);
 
     return (
       <section key={index} className='page-section'>
@@ -61,7 +63,7 @@ class Campaigns extends Component {
                     <div className='progress'>
                       <div className='progress-bar bg-success' role='progressbar' style={{ width: `${parsedPercentage}%` }} aria-valuenow='25' aria-valuemin='0' aria-valuemax='100'></div>
                     </div>
-                    <p>Goal: R$ {campaign.goal} / Donated: R$ {campaign.donated}</p>
+                    <p>Goal: R$ {parsedGoal} / Donated: R$ {parsedDonated}</p>
                     <div>
                       <select ref={ref => this.campaignValue = ref}>
                         <option value="2.00">R$ 2,00</option>
