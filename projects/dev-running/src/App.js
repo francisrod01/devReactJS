@@ -12,11 +12,10 @@ import store from './redux';
 
 import Header from './Header';
 
-
-const Home = props => <h1>Home</h1>
-const Admin = props => <h1>Admin</h1>
-const Restrict = props => <h1>Restrict</h1>
-const Login = props => <h1>Login</h1>
+import Home from './screens/Home';
+import Admin from './screens/Admin';
+import Restrict from './screens/Restrict';
+import Login from './screens/Login';
 
 
 class App extends Component {
