@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
 
 class App extends Component {
+  async componentDidMount() {
+    const login = await axios.post('http://localhost:3001/users/login', {
+      email: 'tuliofaria@devpleno.com',
+      passwd: 'abc123'
+    });
+    const token = login.data.token;
+    console.log(token);
+  }
   render() {
     return (
       <div className="App">
