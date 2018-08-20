@@ -25,8 +25,28 @@ function* signIn(action) {
   }
 }
 
+function* auth() {
+  const token = localStorage.getItem('token');
+  if (token) {
+    try {
+      const user = jwtDecode(token);
+      yield put(ActionCreators.authSuccess(user));
+    }
+    catch (err) {
+      yield put(ActionCreators.authFailure('Invalid token.'));
+    }
+  }
+  else {
+    yield put(ActionCreators.authFailure('There is no token.'));
+  }
+}
+
+
 export default function* rootSaga() {
   yield all([
     takeLatest(Types.SIGNIN_REQUEST, signIn),
+
+    takeLatest(Types.AUTH_REQUEST, auth),
+    put(ActionCreators.authRequest()),
   ]);
 }
