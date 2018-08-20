@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import ActionCreator from '../redux/actionCreators';
 
 
 class Login extends Component {
@@ -16,7 +19,8 @@ class Login extends Component {
     this.setState({ form });
   }
   onSignIn = () => {
-    console.log('on sign in...', this.state.form);
+    const { email, passwd } = this.state.form;
+    this.props.signIn(email, passwd);
   }
   render() {
     return (
@@ -29,16 +33,29 @@ class Login extends Component {
           onChange={this.handleChange('email')} />
 
         <input
-          type='text'
+          type='password'
           value={this.state.form.passwd}
           onChange={this.handleChange('passwd')} />
 
         <button onClick={this.onSignIn}>Sign In</button>
 
-        <p>{ JSON.stringify(this.state) }</p>
+        <p>{ JSON.stringify(this.props) }</p>
       </div>
     );
   }
 }
 
-export default Login;
+const mapStateToProps = state => {
+  return {
+    auth: state.auth,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    signIn: (email, passwd) => dispatch(ActionCreator.signinRequest(email, passwd)),
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
