@@ -1,6 +1,9 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Route, Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+
+import RestrictHome from './Home';
+import RestrictRuns from './Runs';
 
 
 const Restrict = props => {
@@ -8,7 +11,19 @@ const Restrict = props => {
     return <Redirect to='/login' />
   }
   return (
-    <h1>Restrict</h1>
+    <div>
+      <h1>Restrict</h1>
+
+      <p>
+        <Link to='/restrict'>Home</Link>
+        <Link to='/restrict/runs'>Runs</Link>
+      </p>
+
+      <div>
+        <Route exact path={`${props.match.path}/`} component={RestrictHome} />
+        <Route path={`${props.match.path}/runs`} component={RestrictRuns} />
+      </div>
+    </div>
   );
 }
 
