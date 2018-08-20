@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import ActionCreator from '../redux/actionCreators';
 
@@ -23,6 +24,14 @@ class Login extends Component {
     this.props.signIn(email, passwd);
   }
   render() {
+    if (this.props.auth.isAuth) {
+      if (this.props.auth.user.role === 'admin') {
+        return <Redirect to='/admin' />
+      }
+      else {
+        return <Redirect to='/restrict' />
+      }
+    }
     return (
       <div>
         <h1>Login</h1>
@@ -39,7 +48,7 @@ class Login extends Component {
 
         <button onClick={this.onSignIn}>Sign In</button>
 
-        <p>{ JSON.stringify(this.props) }</p>
+        { this.props.auth.error && <p>Error to authenticate.</p> }
       </div>
     );
   }
