@@ -4,6 +4,8 @@ import jwtDecode from 'jwt-decode';
 
 import ActionCreators, { Types } from '../actionCreators';
 
+import { getRuns } from './runs';
+
 
 function* signIn(action) {
   let token = localStorage.getItem('token');
@@ -45,8 +47,9 @@ function* auth() {
 export default function* rootSaga() {
   yield all([
     takeLatest(Types.SIGNIN_REQUEST, signIn),
-
     takeLatest(Types.AUTH_REQUEST, auth),
+    takeLatest(Types.GET_RUNS_REQUEST, getRuns),
+
     put(ActionCreators.authRequest()),
   ]);
 }
