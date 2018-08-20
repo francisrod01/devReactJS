@@ -8,6 +8,26 @@ class Runs extends Component {
   componentDidMount() {
     this.props.load();
   }
+  renderRun(run) {
+    return (
+      <tbody key={run.id}>
+        <tr>
+          <td>
+            { run.friendly_name }
+          </td>
+          <td>
+            { run.duration }
+          </td>
+          <td>
+            { run.distance }
+          </td>
+          <td>
+            { run.created }
+          </td>
+        </tr>
+      </tbody>
+    );
+  }
   render() {
     const run = {
       friendly_name: 'run test',
@@ -20,6 +40,10 @@ class Runs extends Component {
         <h1>Runs</h1>
 
         <button onClick={() => this.props.create(run)}>Create</button>
+
+        <table>
+          { this.props.runs.data.map(this.renderRun) }
+        </table>
       </div>
     );
   }
