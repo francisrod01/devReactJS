@@ -4,7 +4,7 @@ import jwtDecode from 'jwt-decode';
 
 import ActionCreators, { Types } from '../actionCreators';
 
-import { getRuns } from './runs';
+import { getRuns, createRun } from './runs';
 
 
 function* signIn(action) {
@@ -49,6 +49,7 @@ export default function* rootSaga() {
     takeLatest(Types.SIGNIN_REQUEST, signIn),
     takeLatest(Types.AUTH_REQUEST, auth),
     takeLatest(Types.GET_RUNS_REQUEST, getRuns),
+    takeLatest(Types.CREATE_RUN_REQUEST, createRun),
 
     put(ActionCreators.authRequest()),
   ]);
