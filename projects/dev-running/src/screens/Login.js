@@ -4,6 +4,8 @@ import { Redirect } from 'react-router-dom';
 
 import ActionCreator from '../redux/actionCreators';
 
+import { Form, Button } from 'semantic-ui-react';
+
 
 class Login extends Component {
   state = {
@@ -36,19 +38,28 @@ class Login extends Component {
       <div>
         <h1>Login</h1>
 
-        <input
-          type='text'
-          value={this.state.form.email}
-          onChange={this.handleChange('email')} />
+        <Form>
 
-        <input
-          type='password'
-          value={this.state.form.passwd}
-          onChange={this.handleChange('passwd')} />
+          <Form.Field>
+            <label>Email</label>
+            <input
+              type='text'
+              value={this.state.form.email}
+              onChange={this.handleChange('email')} />
+          </Form.Field>
 
-        <button onClick={this.onSignIn}>Sign In</button>
+          <Form.Field>
+            <label>Password</label>
+            <input
+              type='password'
+              value={this.state.form.passwd}
+              onChange={this.handleChange('passwd')} />
+          </Form.Field>
 
-        { this.props.auth.error && <p>Error to authenticate.</p> }
+          <Button onClick={this.onSignIn}>Sign In</Button>
+
+          { this.props.auth.error && <p>Error to authenticate.</p> }
+        </Form>
       </div>
     );
   }
