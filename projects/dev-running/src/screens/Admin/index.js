@@ -1,7 +1,8 @@
 import React from 'react';
-import { Route, Link, Redirect } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import Header from './elements/Header';
 
 const AdminHome = props => <h2>Admin Home</h2>
 const AdminUsers = props => <h2>Admin Users</h2>
@@ -15,13 +16,7 @@ const Admin = props => {
   }
   return (
     <div>
-      <h1>Admin</h1>
-
-      <p>
-        {JSON.stringify(props.auth)}
-        <Link to='/admin'>Home</Link>
-        <Link to='/admin/users'>Users</Link>
-      </p>
+      <Header />
 
       <div>
         <Route exact path={`${props.match.path}/`} component={AdminHome} />

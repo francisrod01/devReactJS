@@ -1,6 +1,8 @@
 import React from 'react';
-import { Route, Link, Redirect } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
+
+import Header from './elements/Header';
 
 import RestrictHome from './Home';
 import RestrictRuns from './Runs';
@@ -12,12 +14,7 @@ const Restrict = props => {
   }
   return (
     <div>
-      <h1>Restrict</h1>
-
-      <p>
-        <Link to='/restrict'>Home</Link>
-        <Link to='/restrict/runs'>Runs</Link>
-      </p>
+      <Header />
 
       <div>
         <Route exact path={`${props.match.path}/`} component={RestrictHome} />
