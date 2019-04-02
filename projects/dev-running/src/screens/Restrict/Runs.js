@@ -5,6 +5,9 @@ import { Table, Button } from 'semantic-ui-react';
 
 import ActionCreators from '../../redux/actionCreators';
 
+import Duration from '../elements/Duration';
+import Distance from '../elements/Distance';
+import DateStr from '../elements/DateStr';
 
 class Runs extends Component {
   componentDidMount() {
@@ -18,15 +21,15 @@ class Runs extends Component {
         </Table.Cell>
 
         <Table.Cell>
-          { run.duration }
+          <Duration duration={ run.duration } />
         </Table.Cell>
 
         <Table.Cell>
-          { run.distance }
+          <Distance distance={ run.distance } metric={'miles'} />
         </Table.Cell>
 
         <Table.Cell>
-          { run.created }
+          <DateStr date={ run.created } timezone={ 'America/Sao_Paulo' } />
         </Table.Cell>
       </Table.Row>
     );
