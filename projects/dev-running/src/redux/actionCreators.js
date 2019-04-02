@@ -23,6 +23,10 @@ export const {
   createRunRequest: ['run'],
   createRunSuccess: ['run'],
   createRunFailure: ['error'],
+
+  updateProfileRequest: ['user'],
+  updateProfileSuccess: ['user'],
+  updateProfileFailure: ['error'],
 })
 
 
