@@ -10,6 +10,9 @@ import MyAccount from './MyAccount';
 
 
 const Restrict = props => {
+  if (props.auth.isSigningIn) {
+    return <p>Loading...</p>;
+  }
   if (!props.auth.isAuth) {
     return <Redirect to='/login' />
   }
