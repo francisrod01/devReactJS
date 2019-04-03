@@ -2,13 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { Menu, Dropdown } from 'semantic-ui-react';
+import { Menu, Dropdown, Image } from 'semantic-ui-react';
 
 import ActionCreators from '../../../redux/actionCreators';
 
 const Header = props => (
   <Menu>
-    <Menu.Item>Runs Online <strong>Admin</strong></Menu.Item>
+    <Menu.Item as={Link} to='/'>
+      <Image
+        src={'/logos/logo.png'}
+        alt={'Runs online'}
+        size='small'
+      />
+    </Menu.Item>
     <Menu.Item as={Link} to='/admin'>Dashboard</Menu.Item>
     <Menu.Item as={Link} to='/admin/users'>Users</Menu.Item>
 

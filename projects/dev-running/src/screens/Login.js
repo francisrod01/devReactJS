@@ -6,6 +6,8 @@ import ActionCreator from '../redux/actionCreators';
 
 import { Form, Button } from 'semantic-ui-react';
 
+import Header from '../Header';
+
 
 class Login extends Component {
   state = {
@@ -36,6 +38,8 @@ class Login extends Component {
     }
     return (
       <div>
+        <Header />
+
         <h1>Login</h1>
 
         <Form>
