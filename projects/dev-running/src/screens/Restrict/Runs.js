@@ -13,9 +13,9 @@ class Runs extends Component {
   componentDidMount() {
     this.props.load();
   }
-  renderRun(run) {
+  renderRun = (run) => {
     return (
-      <Table.Row>
+      <Table.Row key={run.id}>
         <Table.Cell>
           { run.friendly_name }
         </Table.Cell>
@@ -25,11 +25,11 @@ class Runs extends Component {
         </Table.Cell>
 
         <Table.Cell>
-          <Distance distance={ run.distance } metric={'miles'} />
+          <Distance distance={ run.distance } metric={this.props.auth.user.unit} />
         </Table.Cell>
 
         <Table.Cell>
-          <DateStr date={ run.created } timezone={ 'America/Sao_Paulo' } />
+          <DateStr date={ run.created } timezone={ this.props.auth.user.timezone } />
         </Table.Cell>
       </Table.Row>
     );
@@ -67,6 +67,7 @@ class Runs extends Component {
 const mapStateToProps = state => {
   return {
     runs: state.runs,
+    auth: state.auth,
   }
 }
 
