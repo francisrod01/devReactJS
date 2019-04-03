@@ -8,6 +8,7 @@ export const INITIAL_STATE = {
   isAuth: false,
   isSigningIn: false,
   isSaving: false,
+  saved: false,
   user: {},
   error: false,
   errorMessage: '',
@@ -87,6 +88,7 @@ export const updateProfileRequest = (state = INITIAL_STATE, action) => {
     isSaving: true,
     error: false,
     errorMessage: '',
+    saved: false,
   }
 }
 
@@ -101,6 +103,7 @@ export const updateProfileSuccess = (state = INITIAL_STATE, action) => {
     isSaving: false,
     isAuth: true,
     user: newUser,
+    saved: true,
   }
 }
 
@@ -110,6 +113,7 @@ export const updateProfileFailure = (state = INITIAL_STATE, action) => {
     isSaving: false,
     error: true,
     errorMessage: action.error,
+    saved: false,
   }
 }
 
