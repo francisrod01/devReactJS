@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { Segment, Form, Input, Button } from 'semantic-ui-react';
+import { Segment, Form, Button } from 'semantic-ui-react';
 
 import ActionCreators from '../../redux/actionCreators';
 
 class ChangePass extends Component {
   state = {
     passwd: '',
-    confirmPasswd: ''
+    confirmPasswd: '',
+    error: '',
   }
   componentDidMount() {
     this.props.reset();
@@ -19,15 +20,45 @@ class ChangePass extends Component {
     });
   }
   handleSave = () => {
-    this.props.save({
-      id: this.props.auth.user.id,
-      passwd: this.state.passwd,
-    });
+    const { passwd, confirmPasswd } = this.state;
+
+    if (passwd.length < 6) {
+      this.setState({
+        error: 'minlength'
+      });
+    }
+    else if (confirmPasswd !== passwd) {
+      this.setState({
+        error: 'equal'
+      })
+    }
+    else {
+      this.setState({
+        error: ''
+      });
+
+      this.props.save({
+        id: this.props.auth.user.id,
+        passwd
+      });
+    }
   }
   render() {
     return (
       <div>
         <h1>Change Password</h1>
+
+        {this.state.error === 'equal' && (
+          <Segment color='red'>
+            <p>Password and confirmation must be the same.</p>
+          </Segment>
+        )}
+
+        {this.state.error === 'minlength' && (
+          <Segment color='red'>
+            <p>Password must be at least 6 characters.</p>
+          </Segment>
+        )}
 
         {this.props.auth.saved && (
           <Segment color='green'>
