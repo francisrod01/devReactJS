@@ -16,7 +16,7 @@ const Header = props => (
       <Dropdown item text={ props.auth.user.name }>
         <Dropdown.Menu>
           <Dropdown.Item as={Link} to='/restrict/my-account'>My Account</Dropdown.Item>
-          <Dropdown.Item>Change password</Dropdown.Item>
+          <Dropdown.Item as={Link} to='/restrict/change-pass'>Change password</Dropdown.Item>
           <Dropdown.Item onClick={props.logout}>Logout</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>

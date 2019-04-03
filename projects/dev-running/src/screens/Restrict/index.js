@@ -7,6 +7,7 @@ import Header from './elements/Header';
 import RestrictHome from './Home';
 import RestrictRuns from './Runs';
 import MyAccount from './MyAccount';
+import ChangePass from './ChangePass';
 
 
 const Restrict = props => {
@@ -24,6 +25,7 @@ const Restrict = props => {
         <Route exact path={`${props.match.path}/`} component={RestrictHome} />
         <Route path={`${props.match.path}/runs`} component={RestrictRuns} />
         <Route path={`${props.match.path}/my-account`} component={MyAccount} />
+        <Route path={`${props.match.path}/change-pass`} component={ChangePass} />
       </div>
     </div>
   );
