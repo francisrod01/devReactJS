@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { Button } from 'semantic-ui-react';
+import { Segment, Form, Button } from 'semantic-ui-react';
 import timezones from 'moment-timezone/data/meta/latest.json';
 
 import ActionCreators from '../../redux/actionCreators';
@@ -39,23 +39,33 @@ class MyAccount extends Component {
       <div>
         <h1>My Account</h1>
 
-        <select
-          value={this.state.unit}
-          onChange={this.handleChange('unit')}>
-          <option value='metric'>Metric (km)</option>
-          <option value='imperial'>Imperial (mi)</option>
-        </select>
+        {this.props.auth.saved && (
+          <Segment color='green'>
+            <p>Settings changed successfully.</p>
+          </Segment>
+        )}
 
-        <select
-          value={this.state.timezone}
-          onChange={this.handleChange('timezone')}>
+        {!this.props.auth.saved && (
+          <Form>
+            <select
+              value={this.state.unit}
+              onChange={this.handleChange('unit')}>
+              <option value='metric'>Metric (km)</option>
+              <option value='imperial'>Imperial (mi)</option>
+            </select>
 
-          {Object.keys(timezones.zones).map(tz => (
-            <option key={ tz } value={ tz }>{ tz }</option>
-          ))}
-        </select>
+            <select
+              value={this.state.timezone}
+              onChange={this.handleChange('timezone')}>
 
-        <Button onClick={this.handleSave}>Save</Button>
+              {Object.keys(timezones.zones).map(tz => (
+                <option key={ tz } value={ tz }>{ tz }</option>
+              ))}
+            </select>
+
+            <Button onClick={this.handleSave}>Save</Button>
+          </Form>
+        )}
       </div>
     );
   }
