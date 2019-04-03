@@ -27,6 +27,7 @@ export const {
   updateProfileRequest: ['user'],
   updateProfileSuccess: ['user'],
   updateProfileFailure: ['error'],
+  updateProfileReset: null,
 })
 
 

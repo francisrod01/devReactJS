@@ -117,6 +117,14 @@ export const updateProfileFailure = (state = INITIAL_STATE, action) => {
   }
 }
 
+export const updateProfileReset = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    isSaving: false,
+    saved: false,
+  }
+}
+
 // ------
 
 export const HANDLERS = {
@@ -133,6 +141,7 @@ export const HANDLERS = {
   [Types.UPDATE_PROFILE_REQUEST]: updateProfileRequest,
   [Types.UPDATE_PROFILE_SUCCESS]: updateProfileSuccess,
   [Types.UPDATE_PROFILE_FAILURE]: updateProfileFailure,
+  [Types.UPDATE_PROFILE_RESET]: updateProfileReset,
 }
 
 export default createReducer(INITIAL_STATE, HANDLERS);
