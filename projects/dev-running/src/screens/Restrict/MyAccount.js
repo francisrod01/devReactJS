@@ -49,13 +49,16 @@ class MyAccount extends Component {
 
         {!this.props.auth.saved && (
           <Form>
+            <Form.Field>
             <select
               value={this.state.unit}
               onChange={this.handleChange('unit')}>
               <option value='metric'>Metric (km)</option>
               <option value='imperial'>Imperial (mi)</option>
             </select>
+            </Form.Field>
 
+            <Form.Field>
             <select
               value={this.state.timezone}
               onChange={this.handleChange('timezone')}>
@@ -64,6 +67,7 @@ class MyAccount extends Component {
                 <option key={ tz } value={ tz }>{ tz }</option>
               ))}
             </select>
+            </Form.Field>
 
             <Button onClick={this.handleSave}>Save</Button>
           </Form>
