@@ -91,11 +91,16 @@ export const updateProfileRequest = (state = INITIAL_STATE, action) => {
 }
 
 export const updateProfileSuccess = (state = INITIAL_STATE, action) => {
+  const newUser = {
+    ...state.user,
+    ...action.user
+  };
+
   return {
     ...state,
     isSaving: false,
     isAuth: true,
-    user: action.user,
+    user: newUser,
   }
 }
 
