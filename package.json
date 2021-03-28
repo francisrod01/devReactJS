@@ -4,6 +4,6 @@
   "version": "0.0.1",
   "author": "Francis Rodrigues <dev@tosystems.net>",
   "dependencies": {
-    "react": "^16.1.0"
+    "react": "^16.5.0"
   }
 }
